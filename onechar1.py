@@ -1,14 +1,23 @@
 def count(s):
     charqueue = 0
+    onecharqueue = 0
     lst = []
-    for index in range (0, len(s)):
-        if index < len(s)-1:
-            if s[index] == s[index+1]:
+    for index in range (0, len(s)-1):
+        for i in range (index+1, len(s)):
+            if s[index] == s[i]:
+                onecharqueue += 1
+                continue
+            else:
                 charqueue += 1
-        if index < len(s)-2:
-            if s[index] == s[index+1] == s[index+2]:
-                charqueue += 1
-        currentChar = s[index]
+                break
+        for j in range (index, onecharqueue):
+            if index < len(s)-onecharqueue:
+                if s[index] == s[index+j]:
+                    charqueue += 1
+            if index < len(s)-2:
+                if s[index] == s[index+1] == s[index+2]:
+                    charqueue += 1
+            currentChar = s[index]
         if currentChar not in lst:  
             lst.append(currentChar)
             for char in s:
